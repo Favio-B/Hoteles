@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-// Factory Pattern para creación de objetos de hotel
+// Factory Pattern para creación y validación de objetos de hotel
 class HotelFactory {
     constructor() {
         this.validationSchema = Joi.object({

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Esquema de hotel con validaciones y restricciones
+
 const hotelSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -8,7 +10,9 @@ const hotelSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        minlength: 50,
+        maxlength: 1000
     },
     address: {
         street: String,

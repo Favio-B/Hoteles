@@ -2,7 +2,7 @@
 
 Una aplicación web moderna para mostrar los hoteles más buscados en Bogotá, construida con microservicios, Docker y Kubernetes.
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 - **Frontend**: React.js con TypeScript
 - **Backend**: Node.js con Express
@@ -10,7 +10,7 @@ Una aplicación web moderna para mostrar los hoteles más buscados en Bogotá, c
 - **Contenedores**: Docker
 - **Orquestación**: Kubernetes
 
-## 🐳 Docker - Contenedores y Orquestación
+## Docker - Contenedores y Orquestación
 
 ### ¿Qué es Docker?
 
@@ -117,7 +117,7 @@ docker system prune -a
 docker volume prune
 ```
 
-## ☸️ Kubernetes - Orquestación de Contenedores
+## Kubernetes - Orquestación de Contenedores
 
 ### ¿Qué es Kubernetes?
 
@@ -268,7 +268,7 @@ kubectl describe pod <pod-name> -n hotels-bogota
 kubectl describe service hotels-api-service -n hotels-bogota
 ```
 
-## 🏗️ Microservicios - Arquitectura Distribuida
+## Microservicios - Arquitectura Distribuida
 
 ### ¿Qué son los Microservicios?
 
@@ -337,9 +337,9 @@ class Database {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-      console.log('✅ Conectado a MongoDB');
+      console.log('Conectado a MongoDB');
     } catch (error) {
-      console.error('❌ Error conectando a MongoDB:', error);
+      console.error('Error conectando a MongoDB:', error);
       process.exit(1);
     }
   }
@@ -396,7 +396,7 @@ class ResilientHotelService {
 4. **Falla Aislada**: Un servicio fallido no afecta a otros
 5. **Despliegue Independiente**: Actualizaciones sin afectar toda la aplicación
 
-## 🎯 Patrones de Diseño Implementados
+## Patrones de Diseño Implementados
 
 ### 1. Repository Pattern
 
@@ -741,10 +741,10 @@ class Database {
         useUnifiedTopology: true,
       });
       this.isConnected = true;
-      console.log('✅ Conectado a MongoDB');
+      console.log('Conectado a MongoDB');
       return this.connection;
     } catch (error) {
-      console.error('❌ Error conectando a MongoDB:', error);
+      console.error('Error conectando a MongoDB:', error);
       throw error;
     }
   }
@@ -767,31 +767,31 @@ module.exports = new Database();
 - Configuración centralizada
 - Evita múltiples conexiones innecesarias
 
-## 🚀 Servicios
+## Servicios
 
 1. **hotels-api**: Microservicio principal para gestión de hoteles (Puerto 9090)
 2. **hotels-frontend**: Interfaz de usuario (Puerto 5000)
 3. **mongodb**: Base de datos (Puerto 27017)
 
-## 📋 Características
+## Características
 
-- ✅ Búsqueda de hoteles por nombre
-- ✅ Filtros por precio y barrio
-- ✅ Hoteles más buscados
-- ✅ Sistema de calificaciones
-- ✅ Amenities con iconos
-- ✅ Diseño responsive
-- ✅ API RESTful completa
-- ✅ Base de datos con datos de ejemplo
+- Búsqueda de hoteles por nombre
+- Filtros por precio y barrio
+- Hoteles más buscados
+- Sistema de calificaciones
+- Amenities con iconos
+- Diseño responsive
+- API RESTful completa
+- Base de datos con datos de ejemplo
 
-## 🛠️ Instalación
+## Instalación
 
 ### Opción 1: Docker Compose (Recomendado)
-...
+
 ```bash
 # Clonar el repositorio
 git clone <repository-url>
-cd docker
+cd Codigo
 
 # Construir y ejecutar con Docker Compose
 docker-compose up --build -d
@@ -828,14 +828,14 @@ npm install
 npm start
 ```
 
-## 🌐 Acceso
+## Acceso
 
 - **Frontend**: http://localhost:5000
 - **API**: http://localhost:9090
 - **MongoDB**: localhost:27017
 - **Health Check**: http://localhost:9090/health
 
-## 📚 Endpoints de la API
+## Endpoints de la API
 
 ### Hoteles
 - `GET /api/hotels` - Obtener todos los hoteles
@@ -851,7 +851,7 @@ npm start
 - `GET /api/hotels/stats/statistics` - Estadísticas generales
 - `GET /health` - Health check
 
-## 🗄️ Base de Datos
+## Base de Datos
 
 La aplicación incluye datos de ejemplo de 10 hoteles populares en Bogotá:
 
@@ -866,7 +866,7 @@ La aplicación incluye datos de ejemplo de 10 hoteles populares en Bogotá:
 - Hotel Hostal Casa Bellavista (Chapinero)
 - Hotel W Bogotá (Chapinero)
 
-## 🔧 Configuración
+## Configuración
 
 ### Variables de Entorno
 
@@ -883,13 +883,13 @@ MONGO_INITDB_ROOT_PASSWORD=password123
 MONGO_INITDB_DATABASE=hotels_bogota
 ```
 
-## 📊 Monitoreo
+## Monitoreo
 
 - **Health Checks**: Configurados para todos los servicios
 - **Logs**: Centralizados en contenedores Docker
 - **Métricas**: Endpoints de estadísticas disponibles
 
-## 🚀 Despliegue
+## Despliegue
 
 ### Docker Compose
 ```bash
@@ -912,7 +912,7 @@ kubectl get services -n hotels-bogota
 kubectl logs -f deployment/hotels-api -n hotels-bogota
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Backend
@@ -924,11 +924,11 @@ cd hotels-frontend
 npm test
 ```
 
-## 📝 Licencia
+## Licencia
 
 MIT License - ver archivo LICENSE para más detalles.
 
-## 🤝 Contribución
+## Contribución
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -936,6 +936,6 @@ MIT License - ver archivo LICENSE para más detalles.
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📞 Soporte
+## Soporte
 
 Para soporte técnico o preguntas, por favor abrir un issue en el repositorio.

@@ -12,15 +12,15 @@ async function main() {
         // Poblar con datos de ejemplo
         const hotels = await seedDatabase();
         
-        console.log(`✅ Base de datos poblada exitosamente con ${hotels.length} hoteles`);
-        console.log('🏨 Hoteles agregados:');
+        console.log(`Base de datos poblada exitosamente con ${hotels.length} hoteles`);
+        console.log('Hoteles agregados:');
         hotels.forEach(hotel => {
             console.log(`  - ${hotel.name} (${hotel.address.neighborhood})`);
         });
         
         process.exit(0);
     } catch (error) {
-        console.error('❌ Error al poblar la base de datos:', error);
+        console.error(' Error al poblar la base de datos:', error);
         process.exit(1);
     }
 }

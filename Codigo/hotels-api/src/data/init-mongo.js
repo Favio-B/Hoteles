@@ -10,6 +10,6 @@ db.hotels.createIndex({ "address.neighborhood": 1 });
 db.hotels.createIndex({ "rating": -1 });
 db.hotels.createIndex({ "searchCount": -1 });
 
-print('✅ Base de datos hotels_bogota inicializada correctamente');
-print('✅ Índices creados para optimizar búsquedas');
+print('Base de datos hotels_bogota inicializada correctamente');
+print('Índices creados para optimizar búsquedas');
 

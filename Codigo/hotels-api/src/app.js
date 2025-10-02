@@ -93,25 +93,25 @@ async function startServer() {
         
         // Iniciar servidor
         app.listen(PORT, () => {
-            console.log(`🚀 Servidor iniciado en puerto ${PORT}`);
-            console.log(`📊 API disponible en http://localhost:${PORT}`);
-            console.log(`🏥 Health check en http://localhost:${PORT}/health`);
+            console.log(`Servidor iniciado en puerto ${PORT}`);
+            console.log(`API disponible en http://localhost:${PORT}`);
+            console.log(`Health check en http://localhost:${PORT}/health`);
         });
     } catch (error) {
-        console.error('❌ Error al iniciar el servidor:', error);
+        console.error('Error al iniciar el servidor:', error);
         process.exit(1);
     }
 }
 
 // Manejo de señales para cierre graceful
 process.on('SIGTERM', async () => {
-    console.log('🛑 Recibida señal SIGTERM, cerrando servidor...');
+    console.log('Recibida señal SIGTERM, cerrando servidor...');
     await DatabaseConfig.disconnect();
     process.exit(0);
 });
 
 process.on('SIGINT', async () => {
-    console.log('🛑 Recibida señal SIGINT, cerrando servidor...');
+    console.log('Recibida señal SIGINT, cerrando servidor...');
     await DatabaseConfig.disconnect();
     process.exit(0);
 });

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { FaStar, FaSearch, FaMapMarkerAlt, FaWifi, FaCar, FaSwimmingPool, FaDumbbell, FaUtensils, FaGlassMartini, FaSpa, FaConciergeBell, FaSnowflake, FaTv, FaWineBottle, FaLock } from 'react-icons/fa';
 import './App.css';
 
+// Componente principal con funcionalidades de búsqueda y filtrado
+
 const API_BASE_URL = 'http://localhost:9090/api';
 
 function App() {
@@ -15,6 +17,11 @@ function App() {
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const [selectedNeighborhood, setSelectedNeighborhood] = useState('');
   const [neighborhoods, setNeighborhoods] = useState([]);
+  const [searchError, setSearchError] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -44,14 +51,32 @@ function App() {
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
       setFilteredHotels(hotels);
+      setSearchError('');
+      setHasSearched(false);
+      return;
+    }
+
+    // Validación de entrada
+    if (searchQuery.length < 2) {
+      setSearchError('La búsqueda debe tener al menos 2 caracteres');
       return;
     }
 
     try {
+      setIsSearching(true);
+      setSearchError('');
+      setHasSearched(true);
       const response = await axios.get(`${API_BASE_URL}/hotels/search?query=${encodeURIComponent(searchQuery)}`);
       setFilteredHotels(response.data.data);
+      
+      if (response.data.data.length === 0) {
+        setSearchError('No se encontraron hoteles con ese criterio de búsqueda');
+      }
     } catch (err) {
-      setError('Error al buscar hoteles');
+      setSearchError('Error al buscar hoteles. Inténtalo de nuevo.');
+      console.error('Search error:', err);
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -67,6 +92,7 @@ function App() {
     }
 
     setFilteredHotels(filtered);
+    setHasSearched(true); // Marcar que se ha aplicado un filtro
   };
 
   const getAmenityIcon = (amenity) => {
@@ -97,10 +123,33 @@ function App() {
     return colors[priceRange] || '#64748b';
   };
 
+  // Funciones para el slider
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % mostSearched.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + mostSearched.length) % mostSearched.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  // Auto-play del slider
+  useEffect(() => {
+    if (mostSearched.length > 0 && !hasSearched) {
+      const interval = setInterval(nextSlide, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [mostSearched.length, hasSearched]);
+
   if (loading) {
     return (
       <div className="loading">
-        <div>Cargando hoteles...</div>
+        <div className="loading-spinner"></div>
+        <div className="loading-text">Cargando hoteles...</div>
+        <div className="loading-subtitle">Preparando la mejor experiencia para ti</div>
       </div>
     );
   }
@@ -108,11 +157,17 @@ function App() {
   if (error) {
     return (
       <div className="error">
-        <h2>Error</h2>
+        <div className="error-icon">!</div>
+        <h2>Oops! Algo salió mal</h2>
         <p>{error}</p>
-        <button className="btn btn-primary" onClick={fetchData}>
-          Reintentar
-        </button>
+        <div className="error-actions">
+          <button className="btn btn-primary" onClick={fetchData}>
+            Reintentar
+          </button>
+          <button className="btn btn-secondary" onClick={() => window.location.reload()}>
+            Recargar página
+          </button>
+        </div>
       </div>
     );
   }
@@ -121,7 +176,7 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="container">
-          <h1>🏨 Hoteles Bogotá</h1>
+          <h1>Hoteles Bogotá</h1>
           <p>Descubre los mejores hoteles en la capital de Colombia</p>
         </div>
       </header>
@@ -134,145 +189,283 @@ function App() {
               <div className="search-input">
                 <input
                   type="text"
-                  placeholder="Buscar hoteles..."
+                  placeholder="Buscar hoteles por nombre o barrio..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setSearchError('');
+                  }}
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  className={searchError ? 'error' : ''}
+                  aria-label="Buscar hoteles"
                 />
-                <button className="btn btn-primary" onClick={handleSearch}>
-                  <FaSearch />
+                <button 
+                  className="btn btn-primary" 
+                  onClick={handleSearch}
+                  disabled={isSearching}
+                  aria-label="Buscar"
+                >
+                  {isSearching ? 'Buscando...' : <FaSearch />}
                 </button>
               </div>
+              
+              {searchError && (
+                <div className="search-error">
+                  <span>{searchError}</span>
+                </div>
+              )}
             </div>
 
-            <div className="filters">
-              <select
-                value={selectedPriceRange}
-                onChange={(e) => setSelectedPriceRange(e.target.value)}
-                className="filter-select"
+            <div className="filters-toggle">
+              <button 
+                className="btn btn-outline" 
+                onClick={() => setShowFilters(!showFilters)}
+                aria-expanded={showFilters}
               >
-                <option value="">Todos los precios</option>
-                <option value="Económico">Económico</option>
-                <option value="Medio">Medio</option>
-                <option value="Alto">Alto</option>
-                <option value="Lujo">Lujo</option>
-              </select>
-
-              <select
-                value={selectedNeighborhood}
-                onChange={(e) => setSelectedNeighborhood(e.target.value)}
-                className="filter-select"
-              >
-                <option value="">Todos los barrios</option>
-                {neighborhoods.map(neighborhood => (
-                  <option key={neighborhood} value={neighborhood}>
-                    {neighborhood}
-                  </option>
-                ))}
-              </select>
-
-              <button className="btn btn-secondary" onClick={handleFilter}>
-                Filtrar
+{showFilters ? 'Ocultar' : 'Mostrar'} Filtros
               </button>
+              
+              {hasSearched && (
+                <button 
+                  className="btn btn-primary" 
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedPriceRange('');
+                    setSelectedNeighborhood('');
+                    setFilteredHotels(hotels);
+                    setHasSearched(false);
+                    setSearchError('');
+                  }}
+                >
+Ver Todos los Hoteles
+                </button>
+              )}
+              
+              {(selectedPriceRange || selectedNeighborhood) && (
+                <div className="active-filters">
+                  <span className="filter-tag">
+                    {selectedPriceRange && `${selectedPriceRange}`}
+                    {selectedPriceRange && selectedNeighborhood && ' • '}
+                    {selectedNeighborhood && `${selectedNeighborhood}`}
+                  </span>
+                </div>
+              )}
             </div>
+
+            {showFilters && (
+              <div className="filters">
+                <div className="filter-group">
+                  <label htmlFor="price-filter">Rango de Precio:</label>
+                  <select
+                    id="price-filter"
+                    value={selectedPriceRange}
+                    onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    className="filter-select"
+                  >
+                    <option value="">Todos los precios</option>
+                    <option value="Económico">Económico</option>
+                    <option value="Medio">Medio</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Lujo">Lujo</option>
+                  </select>
+                </div>
+
+                <div className="filter-group">
+                  <label htmlFor="neighborhood-filter">Barrio:</label>
+                  <select
+                    id="neighborhood-filter"
+                    value={selectedNeighborhood}
+                    onChange={(e) => setSelectedNeighborhood(e.target.value)}
+                    className="filter-select"
+                  >
+                    <option value="">Todos los barrios</option>
+                    {neighborhoods.map(neighborhood => (
+                      <option key={neighborhood} value={neighborhood}>
+{neighborhood}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="filter-actions">
+                  <button className="btn btn-secondary" onClick={handleFilter}>
+                    Aplicar Filtros
+                  </button>
+                  <button 
+                    className="btn btn-outline" 
+                    onClick={() => {
+                      setSelectedPriceRange('');
+                      setSelectedNeighborhood('');
+                      setFilteredHotels(hotels);
+                      setSearchQuery('');
+                      setHasSearched(false);
+                      setSearchError('');
+                    }}
+                  >
+                    Limpiar Todo
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
 
-          {/* Hoteles Más Buscados */}
-          <section className="most-searched">
-            <h2>🔥 Los Más Buscados</h2>
-            <div className="hotels-grid">
-              {mostSearched.map(hotel => (
-                <div key={hotel._id} className="hotel-card featured">
-                  <div className="hotel-image">
-                    <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
-                    <div className="hotel-badge">Más Buscado</div>
-                  </div>
-                  <div className="hotel-content">
-                    <h3>{hotel.name}</h3>
-                    <p className="hotel-description">{hotel.description}</p>
-                    <div className="hotel-location">
-                      <FaMapMarkerAlt />
-                      <span>{hotel.address.neighborhood}, {hotel.address.city}</span>
-                    </div>
-                    <div className="hotel-rating">
-                      <div className="stars">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} className={i < hotel.rating ? 'star-filled' : 'star-empty'} />
-                        ))}
-                      </div>
-                      <span className="rating-text">{hotel.rating}/5</span>
-                    </div>
-                    <div className="hotel-price-range">
-                      <span 
-                        className="price-badge"
-                        style={{ backgroundColor: getPriceRangeColor(hotel.priceRange) }}
-                      >
-                        {hotel.priceRange}
-                      </span>
-                    </div>
-                    <div className="hotel-amenities">
-                      {hotel.amenities.slice(0, 4).map(amenity => (
-                        <span key={amenity} className="amenity-icon" title={amenity}>
-                          {getAmenityIcon(amenity)}
-                        </span>
+          {/* Hoteles Más Buscados - Slider */}
+          {!hasSearched && mostSearched.length > 0 && (
+            <section className="most-searched">
+              <h2>Los Más Buscados</h2>
+              <div className="slider-container">
+                <div className="slider-wrapper">
+                  <button className="slider-btn prev" onClick={prevSlide}>
+                    ‹
+                  </button>
+                  
+                  <div className="slider">
+                    <div 
+                      className="slider-track"
+                      style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                      {mostSearched.map(hotel => (
+                        <div key={hotel._id} className="slider-slide">
+                          <div className="hotel-card featured">
+                            <div className="hotel-image">
+                              <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
+                              <div className="hotel-badge">Más Buscado</div>
+                            </div>
+                            <div className="hotel-content">
+                              <h3>{hotel.name}</h3>
+                              <p className="hotel-description">{hotel.description}</p>
+                              <div className="hotel-location">
+                                <FaMapMarkerAlt />
+                                <span>{hotel.address.neighborhood}, {hotel.address.city}</span>
+                              </div>
+                              <div className="hotel-rating">
+                                <div className="stars">
+                                  {[...Array(5)].map((_, i) => (
+                                    <FaStar key={i} className={i < hotel.rating ? 'star-filled' : 'star-empty'} />
+                                  ))}
+                                </div>
+                                <span className="rating-text">{hotel.rating}/5</span>
+                              </div>
+                              <div className="hotel-price-range">
+                                <span 
+                                  className="price-badge"
+                                  style={{ backgroundColor: getPriceRangeColor(hotel.priceRange) }}
+                                >
+                                  {hotel.priceRange}
+                                </span>
+                              </div>
+                              <div className="hotel-amenities">
+                                {hotel.amenities.slice(0, 4).map(amenity => (
+                                  <span key={amenity} className="amenity-icon" title={amenity}>
+                                    {getAmenityIcon(amenity)}
+                                  </span>
+                                ))}
+                              </div>
+        <div className="search-count">
+          <span>{hotel.searchCount} búsquedas</span>
+        </div>
+                            </div>
+                          </div>
+                        </div>
                       ))}
                     </div>
-                    <div className="search-count">
-                      <span>👁️ {hotel.searchCount} búsquedas</span>
-                    </div>
                   </div>
+                  
+                  <button className="slider-btn next" onClick={nextSlide}>
+                    ›
+                  </button>
                 </div>
-              ))}
-            </div>
-          </section>
+                
+                {/* Indicadores del slider */}
+                <div className="slider-indicators">
+                  {mostSearched.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                      onClick={() => goToSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
 
-          {/* Todos los Hoteles */}
-          <section className="all-hotels">
-            <h2>🏨 Todos los Hoteles ({filteredHotels.length})</h2>
-            <div className="hotels-grid">
-              {filteredHotels.map(hotel => (
-                <div key={hotel._id} className="hotel-card">
-                  <div className="hotel-image">
-                    <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
-                  </div>
-                  <div className="hotel-content">
-                    <h3>{hotel.name}</h3>
-                    <p className="hotel-description">{hotel.description}</p>
-                    <div className="hotel-location">
-                      <FaMapMarkerAlt />
-                      <span>{hotel.address.neighborhood}, {hotel.address.city}</span>
-                    </div>
-                    <div className="hotel-rating">
-                      <div className="stars">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} className={i < hotel.rating ? 'star-filled' : 'star-empty'} />
-                        ))}
+          {/* Resultados de Búsqueda */}
+          {hasSearched && (
+            <section className="search-results">
+              <h2>
+                {searchQuery ? `Resultados para "${searchQuery}"` : 'Hoteles Filtrados'} 
+                ({filteredHotels.length})
+              </h2>
+              <p className="results-info">
+                {filteredHotels.length === 0 
+                  ? 'No se encontraron hoteles con los criterios seleccionados'
+                  : `Mostrando ${filteredHotels.length} hotel${filteredHotels.length !== 1 ? 'es' : ''}`
+                }
+              </p>
+              {filteredHotels.length > 0 ? (
+                <div className="hotels-grid">
+                  {filteredHotels.map(hotel => (
+                    <div key={hotel._id} className="hotel-card">
+                      <div className="hotel-image">
+                        <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
                       </div>
-                      <span className="rating-text">{hotel.rating}/5</span>
+                      <div className="hotel-content">
+                        <h3>{hotel.name}</h3>
+                        <p className="hotel-description">{hotel.description}</p>
+                        <div className="hotel-location">
+                          <FaMapMarkerAlt />
+                          <span>{hotel.address.neighborhood}, {hotel.address.city}</span>
+                        </div>
+                        <div className="hotel-rating">
+                          <div className="stars">
+                            {[...Array(5)].map((_, i) => (
+                              <FaStar key={i} className={i < hotel.rating ? 'star-filled' : 'star-empty'} />
+                            ))}
+                          </div>
+                          <span className="rating-text">{hotel.rating}/5</span>
+                        </div>
+                        <div className="hotel-price-range">
+                          <span 
+                            className="price-badge"
+                            style={{ backgroundColor: getPriceRangeColor(hotel.priceRange) }}
+                          >
+                            {hotel.priceRange}
+                          </span>
+                        </div>
+                        <div className="hotel-amenities">
+                          {hotel.amenities.slice(0, 4).map(amenity => (
+                            <span key={amenity} className="amenity-icon" title={amenity}>
+                              {getAmenityIcon(amenity)}
+                            </span>
+                          ))}
+                        </div>
+        <div className="search-count">
+          <span>{hotel.searchCount} búsquedas</span>
+        </div>
+                      </div>
                     </div>
-                    <div className="hotel-price-range">
-                      <span 
-                        className="price-badge"
-                        style={{ backgroundColor: getPriceRangeColor(hotel.priceRange) }}
-                      >
-                        {hotel.priceRange}
-                      </span>
-                    </div>
-                    <div className="hotel-amenities">
-                      {hotel.amenities.slice(0, 4).map(amenity => (
-                        <span key={amenity} className="amenity-icon" title={amenity}>
-                          {getAmenityIcon(amenity)}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="search-count">
-                      <span>👁️ {hotel.searchCount} búsquedas</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
+              ) : (
+                <div className="no-results">
+                  <div className="no-results-icon">!</div>
+                  <h3>No se encontraron hoteles</h3>
+                  <p>Intenta con otros términos de búsqueda o filtros diferentes</p>
+                  <button 
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setSearchQuery('');
+                      setHasSearched(false);
+                      setFilteredHotels(hotels);
+                    }}
+                  >
+                    Ver todos los hoteles
+                  </button>
+                </div>
+              )}
+            </section>
+          )}
         </div>
       </main>
 

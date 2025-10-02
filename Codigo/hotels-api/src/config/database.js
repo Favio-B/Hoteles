@@ -20,10 +20,10 @@ class DatabaseConfig {
                 useUnifiedTopology: true,
             });
 
-            console.log('✅ Conectado a MongoDB');
+            console.log('Conectado a MongoDB');
             return this.connection;
         } catch (error) {
-            console.error('❌ Error conectando a MongoDB:', error);
+            console.error('Error conectando a MongoDB:', error);
             throw error;
         }
     }
@@ -35,7 +35,7 @@ class DatabaseConfig {
     async disconnect() {
         if (this.connection) {
             await mongoose.disconnect();
-            console.log('🔌 Desconectado de MongoDB');
+            console.log('Desconectado de MongoDB');
         }
     }
 }
