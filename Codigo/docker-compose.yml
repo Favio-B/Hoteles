@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Base de datos MongoDB
+  mongodb:
+    image: mongo:6.0
+    container_name: hotels-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: hotels_bogota
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./hotels-api/src/data/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - hotels-network
+
+  # Microservicio de hoteles
+  hotels-api:
+    build:
+      context: ./hotels-api
+      dockerfile: Dockerfile
+    container_name: hotels-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 9090
+      MONGODB_URI: mongodb://admin:password123@mongodb:27017/hotels_bogota?authSource=admin
+      FRONTEND_URL: http://localhost:5000
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mongodb
+    networks:
+      - hotels-network
+    volumes:
+      - ./hotels-api/logs:/app/logs
+
+  # Frontend React
+  hotels-frontend:
+    build:
+      context: ./hotels-frontend
+      dockerfile: Dockerfile
+    container_name: hotels-frontend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    depends_on:
+      - hotels-api
+    networks:
+      - hotels-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  hotels-network:
+    driver: bridge
+

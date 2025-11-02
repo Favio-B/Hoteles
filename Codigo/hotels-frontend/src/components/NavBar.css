@@ -1,0 +1,7 @@
+.navbar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.navbar .container { display:flex; gap:16px; align-items:center; justify-content:center; padding:10px 20px; }
+.nav-link { color: var(--color-text); text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600; }
+.nav-link:hover { background: var(--color-surface-muted); color: var(--color-primary); }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Descubre los mejores hoteles en Bogotá. Compara precios, amenidades y reseñas de hoteles en la capital de Colombia. Reserva tu estadía perfecta." />
+    <meta name="keywords" content="hoteles bogotá, reservas hoteles, hoteles colombia, turismo bogotá, hospedaje bogotá" />
+    <meta name="author" content="Hoteles Bogotá" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Hoteles Bogotá - Los Mejores Hoteles en la Capital" />
+    <meta property="og:description" content="Encuentra y compara los mejores hoteles en Bogotá. Reserva tu estadía perfecta con nosotros." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hoteles-bogota.com" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Hoteles Bogotá" />
+    <meta property="og:locale" content="es_CO" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hoteles Bogotá - Los Mejores Hoteles en la Capital" />
+    <meta name="twitter:description" content="Encuentra y compara los mejores hoteles en Bogotá. Reserva tu estadía perfecta con nosotros." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hoteles-bogota.com" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="//images.unsplash.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Hoteles Bogotá",
+      "description": "Plataforma para encontrar y comparar hoteles en Bogotá, Colombia",
+      "url": "https://hoteles-bogota.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://hoteles-bogota.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hoteles Bogotá",
+        "url": "https://hoteles-bogota.com"
+      }
+    }
+    </script>
+    
+    <!-- Additional structured data for hotels -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Hoteles en Bogotá",
+      "description": "Lista de los mejores hoteles en Bogotá, Colombia",
+      "itemListElement": [
+        {
+          "@type": "LodgingBusiness",
+          "name": "Hotel Tequendama",
+          "description": "Hotel histórico ubicado en el centro de Bogotá",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carrera 10 # 26-21",
+            "addressLocality": "La Candelaria",
+            "addressRegion": "Bogotá",
+            "addressCountry": "CO"
+          },
+          "rating": {
+            "@type": "Rating",
+            "ratingValue": "4.5",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Performance hints -->
+    <link rel="preload" href="/static/js/bundle.js" as="script" />
+    <link rel="preload" href="/static/css/main.css" as="style" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="Hoteles Bogotá" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Hoteles Bogotá" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#3b82f6" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    
+    <title>Hoteles Bogotá - Los Mejores Hoteles en la Capital de Colombia</title>
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align: center; padding: 20px; background: #f8f9fa; border: 1px solid #dee2e6; margin: 20px;">
+        <h2>JavaScript Requerido</h2>
+        <p>Esta aplicación requiere JavaScript para funcionar correctamente. Por favor, habilita JavaScript en tu navegador.</p>
+        <p>Si necesitas ayuda, contacta a nuestro equipo de soporte.</p>
+      </div>
+    </noscript>
+    
+    <div id="root"></div>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Basic performance monitoring
+      window.addEventListener('load', function() {
+        if ('performance' in window) {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+        }
+      });
+    </script>
+  </body>
+</html>

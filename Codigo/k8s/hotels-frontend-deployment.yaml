@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotels-frontend
+  labels:
+    app: hotels-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotels-frontend
+  template:
+    metadata:
+      labels:
+        app: hotels-frontend
+    spec:
+      containers:
+      - name: hotels-frontend
+        image: hotels-frontend:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotels-frontend-service
+spec:
+  selector:
+    app: hotels-frontend
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: LoadBalancer
+
