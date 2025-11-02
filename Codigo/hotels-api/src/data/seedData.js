@@ -156,6 +156,10 @@ const hotelsData = [
         amenities: ["WiFi", "Restaurante", "Bar", "Estacionamiento", "Aire acondicionado", "TV"],
         images: [
             {
+                url: "REEMPLAZAR_POR_DATA_URI_ZONA_T", // data:image/jpeg;base64,... (pegar aquí el valor completo)
+                alt: "Hotel Zona T"
+            },
+            {
                 url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800",
                 alt: "Hotel Zona T"
             }

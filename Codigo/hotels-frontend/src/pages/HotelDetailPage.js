@@ -219,6 +219,10 @@ const HotelDetailPage = () => {
               src={hotel.images[selectedImage]?.url || 'https://via.placeholder.com/800x500'} 
               alt={hotel.name}
               className="main-image"
+              onError={() => {
+                const next = Math.min(hotel.images.length - 1, selectedImage + 1);
+                if (next !== selectedImage) setSelectedImage(next);
+              }}
             />
             <div className="gallery-controls">
               <button 
@@ -240,12 +244,13 @@ const HotelDetailPage = () => {
           
           <div className="gallery-thumbnails">
             {hotel.images.map((image, index) => (
-              <img
+              <img 
                 key={index}
                 src={image.url}
                 alt={`${hotel.name} ${index + 1}`}
                 className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
                 onClick={() => setSelectedImage(index)}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
             ))}
           </div>

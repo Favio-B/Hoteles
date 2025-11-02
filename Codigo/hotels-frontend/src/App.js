@@ -52,6 +52,26 @@ function App() {
     }
   };
 
+  // Imagen: intentar siguientes URLs si la principal falla
+  const handleCardImgError = (e, images) => {
+    try {
+      const el = e.currentTarget;
+      const current = parseInt(el.dataset.idx || '0', 10);
+      const next = current + 1;
+      const nextUrl = images && images[next] && images[next].url;
+      if (nextUrl) {
+        el.dataset.idx = String(next);
+        el.src = nextUrl;
+      } else {
+        el.onerror = null;
+        el.src = 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200';
+      }
+    } catch (_) {
+      e.currentTarget.onerror = null;
+      e.currentTarget.src = 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200';
+    }
+  };
+
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
       setFilteredHotels(hotels);
@@ -336,7 +356,12 @@ Ver Todos los Hoteles
                         <div key={hotel._id} className="slider-slide">
                           <div className="hotel-card featured" onClick={() => navigate(`/hotels/${hotel._id}`)}>
                             <div className="hotel-image">
-                              <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
+                              <img
+                                src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'}
+                                alt={hotel.name}
+                                data-idx="0"
+                                onError={(e) => handleCardImgError(e, hotel.images)}
+                              />
                               <div className="hotel-badge">Más Buscado</div>
                             </div>
                             <div className="hotel-content">
@@ -416,7 +441,12 @@ Ver Todos los Hoteles
                   {filteredHotels.map(hotel => (
                     <div key={hotel._id} className="hotel-card" onClick={() => navigate(`/hotels/${hotel._id}`)}>
                       <div className="hotel-image">
-                        <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
+                        <img
+                          src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'}
+                          alt={hotel.name}
+                          data-idx="0"
+                          onError={(e) => handleCardImgError(e, hotel.images)}
+                        />
                       </div>
                       <div className="hotel-content">
                         <h3>{hotel.name}</h3>
