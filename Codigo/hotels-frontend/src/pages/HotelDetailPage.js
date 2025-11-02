@@ -12,6 +12,12 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './HotelDetailPage.css';
+<<<<<<< HEAD
+=======
+import Breadcrumb from '../components/Breadcrumb';
+import NavBar from '../components/NavBar';
+import BookingModal from '../components/BookingModal';
+>>>>>>> 80d62c4 (Commit 4)
 
 const API_BASE_URL = 'http://localhost:9090/api';
 
@@ -109,6 +115,7 @@ const HotelDetailPage = () => {
     try {
       setLoading(true);
       const response = await axios.get(`${API_BASE_URL}/hotels/${id}`);
+<<<<<<< HEAD
       setHotel(response.data.data);
       
       // Simular reseñas
@@ -138,6 +145,18 @@ const HotelDetailPage = () => {
           verified: false
         }
       ]);
+=======
+      const data = response.data.data;
+      setHotel(data);
+      setReviews((data && data.reviews) ? data.reviews.map((r, idx) => ({
+        id: r._id || idx,
+        author: r.author,
+        rating: r.rating,
+        comment: r.comment,
+        date: (r.date || new Date()).toString().slice(0,10),
+        verified: !!r.verified
+      })) : []);
+>>>>>>> 80d62c4 (Commit 4)
     } catch (err) {
       setError('Error al cargar los detalles del hotel');
     } finally {
@@ -168,10 +187,14 @@ const HotelDetailPage = () => {
   };
 
   const handleBooking = () => {
+<<<<<<< HEAD
     if (!selectedRoom) {
       alert('Por favor selecciona una habitación');
       return;
     }
+=======
+    // Permite abrir el modal sin habitación previa; la selección se hace en el modal
+>>>>>>> 80d62c4 (Commit 4)
     if (!checkIn || !checkOut) {
       alert('Por favor selecciona las fechas de entrada y salida');
       return;
@@ -208,6 +231,10 @@ const HotelDetailPage = () => {
 
   return (
     <div className="hotel-detail-page">
+<<<<<<< HEAD
+=======
+      <NavBar />
+>>>>>>> 80d62c4 (Commit 4)
       {/* Header con navegación */}
       <div className="hotel-header">
         <div className="container">
@@ -231,6 +258,10 @@ const HotelDetailPage = () => {
       {/* Galería de imágenes */}
       <section className="hotel-gallery">
         <div className="container">
+<<<<<<< HEAD
+=======
+          <Breadcrumb items={[{ label: 'Inicio', to: '/' }, { label: hotel.name }]} />
+>>>>>>> 80d62c4 (Commit 4)
           <div className="gallery-main">
             <img 
               src={hotel.images[selectedImage]?.url || 'https://via.placeholder.com/800x500'} 
@@ -366,6 +397,54 @@ const HotelDetailPage = () => {
                     </div>
                   ))}
                 </div>
+<<<<<<< HEAD
+=======
+
+                {/* Agregar reseña */}
+                <div className="add-review" style={{marginTop: 20}}>
+                  <h4>Agrega tu reseña</h4>
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom:12}}>
+                    <input
+                      type="text"
+                      placeholder="Tu nombre"
+                      value={newReview.author}
+                      onChange={(e)=>setNewReview({...newReview, author: e.target.value})}
+                    />
+                    <select
+                      value={newReview.rating}
+                      onChange={(e)=>setNewReview({...newReview, rating: parseInt(e.target.value)})}
+                    >
+                      {[1,2,3,4,5].map(n=> (<option key={n} value={n}>{n} estrella{n>1?'s':''}</option>))}
+                    </select>
+                  </div>
+                  <textarea
+                    placeholder="Tu comentario"
+                    value={newReview.comment}
+                    onChange={(e)=>setNewReview({...newReview, comment: e.target.value})}
+                    rows={4}
+                    style={{width:'100%', padding:12, border:'2px solid var(--color-border)', borderRadius:8}}
+                  />
+                  <div style={{marginTop:12}}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={async () => {
+                        if(!newReview.author || !newReview.comment){ alert('Por favor completa nombre y comentario'); return; }
+                        try {
+                          const payload = { author: newReview.author, rating: newReview.rating, comment: newReview.comment };
+                          const resp = await axios.post(`${API_BASE_URL}/hotels/${id}/reviews`, payload);
+                          const list = resp.data?.data || [];
+                          setReviews(list.map((r, idx) => ({ id: r._id || idx, author: r.author, rating: r.rating, comment: r.comment, date: (r.date||new Date()).toString().slice(0,10), verified: !!r.verified })));
+                          setNewReview({ rating: 5, comment: '', author: '' });
+                        } catch(e) {
+                          alert('No se pudo guardar la reseña');
+                        }
+                      }}
+                    >
+                      Publicar reseña
+                    </button>
+                  </div>
+                </div>
+>>>>>>> 80d62c4 (Commit 4)
               </div>
             </div>
 

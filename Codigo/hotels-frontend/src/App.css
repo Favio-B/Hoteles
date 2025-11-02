@@ -5,21 +5,35 @@
 }
 
 .header {
+<<<<<<< HEAD
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: white;
   padding: 60px 0;
+=======
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  padding: 36px 0;
+>>>>>>> 80d62c4 (Commit 4)
   text-align: center;
 }
 
 .header h1 {
+<<<<<<< HEAD
   font-size: 3rem;
+=======
+  font-size: 2.4rem;
+>>>>>>> 80d62c4 (Commit 4)
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
+<<<<<<< HEAD
   font-size: 1.2rem;
+=======
+  font-size: 1.05rem;
+>>>>>>> 80d62c4 (Commit 4)
   opacity: 0.9;
   font-weight: 300;
 }
@@ -29,6 +43,52 @@
   padding: 40px 0;
 }
 
+<<<<<<< HEAD
+=======
+/* Informational sections */
+.info-section,
+.about-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 28px 0 0;
+}
+
+.info-section h2,
+.about-section h2,
+.contact-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.info-section p,
+.about-section p,
+.contact-section p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.contact-section {
+  margin-top: 12px;
+}
+
+.footer .contact-block {
+  margin-bottom: 12px;
+}
+
+.footer .contact-block a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.footer .contact-block a:hover {
+  text-decoration: underline;
+}
+
+>>>>>>> 80d62c4 (Commit 4)
 .search-section {
   margin-bottom: 40px;
 }
@@ -55,7 +115,11 @@
 }
 
 .search-input input:focus {
+<<<<<<< HEAD
   border-color: #2c3e50;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .search-input button {
@@ -82,7 +146,11 @@
 }
 
 .filter-select:focus {
+<<<<<<< HEAD
   border-color: #2c3e50;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .most-searched,
@@ -121,7 +189,27 @@
 }
 
 .hotel-card.featured {
+<<<<<<< HEAD
   border: 3px solid #fbbf24;
+=======
+  border: 3px solid var(--color-accent, #a78bfa);
+}
+
+/* Mostrar un botón visual "Ver detalles" sobre la tarjeta */
+.hotel-card::after {
+  content: 'Ver detalles';
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  pointer-events: none; /* el click pasa al contenedor (que navega) */
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .hotel-image {
@@ -163,11 +251,19 @@
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 10px;
+<<<<<<< HEAD
   color: #1e293b;
 }
 
 .hotel-description {
   color: #64748b;
+=======
+  color: var(--color-text);
+}
+
+.hotel-description {
+  color: var(--color-muted);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 15px;
@@ -182,14 +278,22 @@
   display: flex;
   align-items: center;
   gap: 8px;
+<<<<<<< HEAD
   color: #64748b;
+=======
+  color: var(--color-muted);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 14px;
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 .hotel-location svg {
   color: #ef4444;
 }
+=======
+.hotel-location svg { color: var(--color-secondary); }
+>>>>>>> 80d62c4 (Commit 4)
 
 .hotel-rating {
   display: flex;
@@ -213,7 +317,11 @@
 
 .rating-text {
   font-weight: 600;
+<<<<<<< HEAD
   color: #1e293b;
+=======
+  color: var(--color-text);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .hotel-price-range {
@@ -300,7 +408,11 @@
 }
 
 .loading-text {
+<<<<<<< HEAD
   font-size: 1.2rem;
+=======
+  font-size: 1.05rem;
+>>>>>>> 80d62c4 (Commit 4)
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 8px;
@@ -478,6 +590,7 @@
 }
 
 /* Slider Styles */
+<<<<<<< HEAD
 .slider-container {
   position: relative;
   max-width: 1000px;
@@ -498,6 +611,13 @@
   border-radius: 16px;
   height: 400px; /* Altura fija para el slider */
 }
+=======
+.slider-container { position: relative; max-width: 1100px; margin: 0 auto; padding: 0; }
+
+.slider-wrapper { position: relative; display: flex; align-items: center; gap: 12px; }
+
+.slider { flex: 1; overflow: hidden; border-radius: 16px; aspect-ratio: 16 / 9; height: auto; min-height: 300px; }
+>>>>>>> 80d62c4 (Commit 4)
 
 .slider-track {
   display: flex;
@@ -505,6 +625,7 @@
   height: 100%;
 }
 
+<<<<<<< HEAD
 .slider-slide {
   min-width: 100%;
   flex-shrink: 0;
@@ -515,6 +636,9 @@
   padding: 20px;
   box-sizing: border-box;
 }
+=======
+.slider-slide { min-width: 100%; flex-shrink: 0; height: 100%; display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box; }
+>>>>>>> 80d62c4 (Commit 4)
 
 /* Estilos específicos para las tarjetas del slider */
 .slider-slide .hotel-card {
@@ -526,10 +650,14 @@
   margin: 0;
 }
 
+<<<<<<< HEAD
 .slider-slide .hotel-image {
   height: 200px;
   flex-shrink: 0;
 }
+=======
+.slider-slide .hotel-image { height: clamp(200px, 34vh, 320px); flex-shrink: 0; }
+>>>>>>> 80d62c4 (Commit 4)
 
 .slider-slide .hotel-content {
   flex: 1;
@@ -557,7 +685,11 @@
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
+<<<<<<< HEAD
   color: #1e293b;
+=======
+  color: var(--color-text);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
@@ -567,8 +699,13 @@
 }
 
 .slider-btn:hover {
+<<<<<<< HEAD
   background: #2c3e50;
   color: white;
+=======
+  background: var(--color-primary);
+  color: #fff;
+>>>>>>> 80d62c4 (Commit 4)
   transform: scale(1.1);
 }
 
@@ -590,13 +727,21 @@
   height: 12px;
   border-radius: 50%;
   border: none;
+<<<<<<< HEAD
   background: #e2e8f0;
+=======
+  background: var(--color-border);
+>>>>>>> 80d62c4 (Commit 4)
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .indicator.active {
+<<<<<<< HEAD
   background: #2c3e50;
+=======
+  background: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   transform: scale(1.2);
 }
 
@@ -674,6 +819,7 @@
     gap: 20px;
   }
   
+<<<<<<< HEAD
   .slider {
     height: 300px; /* Altura aún más pequeña en pantallas muy pequeñas */
   }
@@ -681,6 +827,11 @@
   .slider-slide .hotel-image {
     height: 120px;
   }
+=======
+  .slider { flex: 1; overflow: hidden; border-radius: 16px; aspect-ratio: 16 / 9; height: auto; min-height: 300px; }
+  
+  .slider-slide .hotel-image { height: clamp(200px, 34vh, 320px); flex-shrink: 0; }
+>>>>>>> 80d62c4 (Commit 4)
   
   .slider-slide .hotel-description {
     -webkit-line-clamp: 2; /* Solo 2 líneas en pantallas muy pequeñas */
@@ -739,6 +890,7 @@
     justify-content: center;
   }
   
+<<<<<<< HEAD
   .slider-container {
     padding: 0 10px;
   }
@@ -754,6 +906,15 @@
   .slider-slide .hotel-image {
     height: 150px; /* Imagen más pequeña en móviles */
   }
+=======
+  .slider-container { position: relative; max-width: 1100px; margin: 0 auto; padding: 0; }
+  
+  .slider-wrapper { position: relative; display: flex; align-items: center; gap: 12px; }
+  
+  .slider { flex: 1; overflow: hidden; border-radius: 16px; aspect-ratio: 16 / 9; height: auto; min-height: 300px; }
+  
+  .slider-slide .hotel-image { height: clamp(200px, 34vh, 320px); flex-shrink: 0; }
+>>>>>>> 80d62c4 (Commit 4)
   
   .slider-slide .hotel-description {
     -webkit-line-clamp: 3; /* Menos líneas en móviles */
@@ -793,7 +954,20 @@
   }
   
   .hotel-content h3 {
+<<<<<<< HEAD
     font-size: 1.2rem;
   }
 }
 
+=======
+    font-size: 1.05rem;
+  }
+}
+
+
+
+/* Slider image fit */
+.slider .hotel-image img,
+.slider-slide .hotel-image img { width:100%; height:100%; object-fit:cover; object-position:center center; display:block; }
+@media (max-width: 768px){ .header { padding:28px 0; } .header h1 { font-size:2rem; } .slider-slide .hotel-image { height: clamp(160px, 28vh, 260px); } }
+>>>>>>> 80d62c4 (Commit 4)

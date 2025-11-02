@@ -101,6 +101,34 @@ class HotelService {
         }
     }
 
+<<<<<<< HEAD
+=======
+    async addReviewToHotel(id, reviewData) {
+        try {
+            // Validación básica
+            if (!reviewData || !reviewData.author || !reviewData.comment || !reviewData.rating) {
+                throw new Error('Campos de reseña incompletos');
+            }
+            const rating = Number(reviewData.rating);
+            if (isNaN(rating) || rating < 1 || rating > 5) {
+                throw new Error('Rating inválido');
+            }
+            const normalized = {
+                author: String(reviewData.author).trim(),
+                comment: String(reviewData.comment).trim(),
+                rating,
+                verified: Boolean(reviewData.verified)
+            };
+            const hotel = await this.repository.addReview(id, normalized);
+            this.observer.notify('review_added', { hotelId: id, rating: normalized.rating });
+            return hotel;
+        } catch (error) {
+            this.observer.notify('error', { message: error.message });
+            throw error;
+        }
+    }
+
+>>>>>>> 80d62c4 (Commit 4)
     async deleteHotel(id) {
         try {
             const hotel = await this.repository.delete(id);

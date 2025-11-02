@@ -56,7 +56,18 @@ const hotelSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
+<<<<<<< HEAD
     }
+=======
+    },
+    reviews: [{
+        author: { type: String, required: true, trim: true },
+        rating: { type: Number, min: 1, max: 5, required: true },
+        comment: { type: String, required: true, minlength: 2, maxlength: 1000 },
+        date: { type: Date, default: Date.now },
+        verified: { type: Boolean, default: false }
+    }]
+>>>>>>> 80d62c4 (Commit 4)
 }, {
     timestamps: true
 });

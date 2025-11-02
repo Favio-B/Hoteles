@@ -1,0 +1,26 @@
+.breadcrumb {
+  background: transparent;
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 10px 0 20px;
+}
+
+.breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  margin: 0 8px;
+  color: var(--color-muted);
+}
+
+.breadcrumb-current {
+  color: var(--color-text);
+  font-weight: 600;
+}
+

@@ -1,12 +1,20 @@
 /* Hotel Detail Page Styles */
 .hotel-detail-page {
   min-height: 100vh;
+<<<<<<< HEAD
   background: #f8fafc;
+=======
+  background: var(--color-bg);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 /* Header */
 .hotel-header {
+<<<<<<< HEAD
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+=======
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+>>>>>>> 80d62c4 (Commit 4)
   color: white;
   padding: 20px 0;
 }
@@ -134,7 +142,11 @@
 }
 
 .thumbnail.active {
+<<<<<<< HEAD
   border-color: #3b82f6;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   transform: scale(1.05);
 }
 
@@ -182,7 +194,11 @@
 .hotel-amenities h3,
 .hotel-policies h3,
 .hotel-reviews h3 {
+<<<<<<< HEAD
   color: #1e293b;
+=======
+  color: var(--color-text);
+>>>>>>> 80d62c4 (Commit 4)
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
@@ -199,14 +215,22 @@
   align-items: center;
   gap: 10px;
   padding: 12px;
+<<<<<<< HEAD
   background: #f8fafc;
+=======
+  background: var(--color-bg);
+>>>>>>> 80d62c4 (Commit 4)
   border-radius: 8px;
   font-weight: 500;
   color: #374151;
 }
 
 .amenity-item svg {
+<<<<<<< HEAD
   color: #3b82f6;
+=======
+  color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 18px;
 }
 
@@ -237,7 +261,11 @@
 
 /* Reviews */
 .reviews-summary {
+<<<<<<< HEAD
   background: #f8fafc;
+=======
+  background: var(--color-bg);
+>>>>>>> 80d62c4 (Commit 4)
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -258,14 +286,22 @@
 .rating-bar {
   flex: 1;
   height: 8px;
+<<<<<<< HEAD
   background: #e2e8f0;
+=======
+  background: var(--color-border);
+>>>>>>> 80d62c4 (Commit 4)
   border-radius: 4px;
   overflow: hidden;
 }
 
 .rating-fill {
   height: 100%;
+<<<<<<< HEAD
   background: #3b82f6;
+=======
+  background: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   transition: width 0.3s ease;
 }
 

@@ -192,6 +192,20 @@ class HotelController {
             });
         }
     }
+<<<<<<< HEAD
+=======
+
+    // POST /api/hotels/:id/reviews - Agregar reseña
+    async addReview(req, res) {
+        try {
+            const { id } = req.params;
+            const hotel = await this.service.addReviewToHotel(id, req.body);
+            res.status(201).json({ success: true, data: hotel.reviews, averageRating: hotel.rating });
+        } catch (error) {
+            res.status(400).json({ success: false, message: error.message });
+        }
+    }
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 module.exports = new HotelController();

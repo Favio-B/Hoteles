@@ -23,6 +23,7 @@
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
 
+<<<<<<< HEAD
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -38,6 +39,11 @@
   color: #1e293b;
   font-size: 1.5rem;
 }
+=======
+.modal-header { display:flex; justify-content:space-between; align-items:center; padding:25px 30px; border-bottom:1px solid var(--color-border); background: var(--color-bg); border-radius:16px 16px 0 0; }
+
+.modal-header h2 { margin:0; color: var(--color-text); font-size:1.5rem; }
+>>>>>>> 80d62c4 (Commit 4)
 
 .close-btn {
   display: flex;
@@ -46,31 +52,49 @@
   width: 40px;
   height: 40px;
   border: none;
+<<<<<<< HEAD
   background: #f1f5f9;
   border-radius: 8px;
   color: #64748b;
+=======
+  background: var(--color-surface-muted);
+  border-radius: 8px;
+  color: var(--color-muted);
+>>>>>>> 80d62c4 (Commit 4)
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 18px;
 }
 
+<<<<<<< HEAD
 .close-btn:hover {
   background: #e2e8f0;
   color: #1e293b;
 }
+=======
+.close-btn:hover { background: var(--color-border); color: var(--color-text); }
+>>>>>>> 80d62c4 (Commit 4)
 
 .modal-content {
   padding: 30px;
 }
 
 .step-content h3 {
+<<<<<<< HEAD
   color: #1e293b;
+=======
+  color: var(--color-text);
+>>>>>>> 80d62c4 (Commit 4)
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
 
 .step-description {
+<<<<<<< HEAD
   color: #64748b;
+=======
+  color: var(--color-muted);
+>>>>>>> 80d62c4 (Commit 4)
   margin-bottom: 30px;
   line-height: 1.5;
 }
@@ -84,7 +108,11 @@
 }
 
 .room-card {
+<<<<<<< HEAD
   border: 2px solid #e2e8f0;
+=======
+  border: 2px solid var(--color-border);
+>>>>>>> 80d62c4 (Commit 4)
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -93,14 +121,23 @@
 }
 
 .room-card:hover {
+<<<<<<< HEAD
   border-color: #3b82f6;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .room-card.selected {
+<<<<<<< HEAD
   border-color: #3b82f6;
   background: #f0f9ff;
+=======
+  border-color: var(--color-primary);
+  background: #e6f7fb;
+>>>>>>> 80d62c4 (Commit 4)
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
 }
 
@@ -137,6 +174,7 @@
   padding: 20px;
 }
 
+<<<<<<< HEAD
 .room-info h4 {
   margin: 0 0 10px 0;
   color: #1e293b;
@@ -148,6 +186,11 @@
   margin-bottom: 15px;
   line-height: 1.4;
 }
+=======
+.room-info h4 { margin: 0 0 10px 0; color: var(--color-text); font-size: 1.2rem; }
+
+.room-info p { color: var(--color-muted); margin-bottom: 15px; line-height: 1.4; }
+>>>>>>> 80d62c4 (Commit 4)
 
 .room-amenities {
   display: flex;
@@ -156,6 +199,7 @@
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 .amenity-tag {
   display: flex;
   align-items: center;
@@ -170,6 +214,13 @@
 .amenity-tag svg {
   font-size: 12px;
   color: #3b82f6;
+=======
+.amenity-tag { display:flex; align-items:center; gap:4px; padding:4px 8px; background: var(--color-surface-muted); border-radius:12px; font-size:12px; color:#374151; }
+
+.amenity-tag svg {
+  font-size: 12px;
+  color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .room-details {
@@ -178,6 +229,7 @@
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 .detail-item {
   display: flex;
   align-items: center;
@@ -188,6 +240,12 @@
 
 .detail-item svg {
   color: #3b82f6;
+=======
+.detail-item { display:flex; align-items:center; gap:5px; color: var(--color-muted); font-size:14px; }
+
+.detail-item svg {
+  color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 14px;
 }
 
@@ -197,6 +255,7 @@
   gap: 5px;
 }
 
+<<<<<<< HEAD
 .room-price .price {
   font-size: 1.5rem;
   font-weight: 700;
@@ -207,6 +266,11 @@
   color: #64748b;
   font-size: 14px;
 }
+=======
+.room-price .price { font-size:1.5rem; font-weight:700; color: var(--color-text); }
+
+.room-price .period { color: var(--color-muted); font-size:14px; }
+>>>>>>> 80d62c4 (Commit 4)
 
 /* Services Selection */
 .services-grid {
@@ -216,6 +280,7 @@
   margin-bottom: 30px;
 }
 
+<<<<<<< HEAD
 .service-card {
   display: flex;
   align-items: center;
@@ -230,12 +295,23 @@
 
 .service-card:hover {
   border-color: #3b82f6;
+=======
+.service-card { display:flex; align-items:center; gap:15px; padding:20px; border:2px solid var(--color-border); border-radius:12px; cursor:pointer; transition:all 0.2s ease; background:white; }
+
+.service-card:hover {
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   transform: translateY(-1px);
 }
 
 .service-card.selected {
+<<<<<<< HEAD
   border-color: #3b82f6;
   background: #f0f9ff;
+=======
+  border-color: var(--color-primary);
+  background: #e6f7fb;
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .service-icon {
@@ -246,7 +322,11 @@
   height: 50px;
   background: #f1f5f9;
   border-radius: 12px;
+<<<<<<< HEAD
   color: #3b82f6;
+=======
+  color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   font-size: 20px;
 }
 
@@ -296,8 +376,13 @@
 }
 
 .service-card.selected .service-checkbox {
+<<<<<<< HEAD
   background: #3b82f6;
   border-color: #3b82f6;
+=======
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .checked {
@@ -347,7 +432,11 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
+<<<<<<< HEAD
   border-color: #3b82f6;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .form-group textarea {
@@ -440,7 +529,11 @@
 }
 
 .payment-option:hover {
+<<<<<<< HEAD
   border-color: #3b82f6;
+=======
+  border-color: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .payment-option input[type="radio"] {
@@ -508,7 +601,11 @@
 }
 
 .btn-primary {
+<<<<<<< HEAD
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+=======
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+>>>>>>> 80d62c4 (Commit 4)
   color: white;
 }
 
@@ -524,12 +621,21 @@
 
 .btn-outline {
   background: transparent;
+<<<<<<< HEAD
   color: #3b82f6;
   border: 2px solid #3b82f6;
 }
 
 .btn-outline:hover {
   background: #3b82f6;
+=======
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+>>>>>>> 80d62c4 (Commit 4)
   color: white;
 }
 

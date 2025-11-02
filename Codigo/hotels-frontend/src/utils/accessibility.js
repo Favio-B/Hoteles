@@ -203,6 +203,7 @@ export const formAccessibility = {
 
 // Initialize accessibility features
 export const initAccessibility = () => {
+<<<<<<< HEAD
   // Add skip link
   const skipLink = document.createElement('a');
   skipLink.href = '#main-content';
@@ -211,6 +212,10 @@ export const initAccessibility = () => {
   document.body.insertBefore(skipLink, document.body.firstChild);
 
   // Add main landmark
+=======
+  // Skip link deshabilitado por requerimiento de UI
+  // Mantener landmarks ARIA sin mostrar enlace visual
+>>>>>>> 80d62c4 (Commit 4)
   const main = document.querySelector('main');
   if (main) {
     main.id = 'main-content';

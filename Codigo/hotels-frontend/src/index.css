@@ -10,8 +10,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+<<<<<<< HEAD
   background-color: #f8fafc;
   color: #1e293b;
+=======
+  background-color: var(--color-bg);
+  color: var(--color-text);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 code {
@@ -22,9 +27,18 @@ code {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+<<<<<<< HEAD
   padding: 0 20px;
 }
 
+=======
+  padding: 0 32px;
+}
+
+/* Ocultar cualquier skip-link residual */
+.skip-link { display: none !important; }
+
+>>>>>>> 80d62c4 (Commit 4)
 .btn {
   padding: 12px 24px;
   border: none;
@@ -37,6 +51,7 @@ code {
 }
 
 .btn-primary {
+<<<<<<< HEAD
   background-color: #3b82f6;
   color: white;
 }
@@ -52,6 +67,23 @@ code {
 
 .btn-secondary:hover {
   background-color: #475569;
+=======
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+>>>>>>> 80d62c4 (Commit 4)
 }
 
 .card {
@@ -73,6 +105,7 @@ code {
   align-items: center;
   min-height: 200px;
   font-size: 18px;
+<<<<<<< HEAD
   color: #64748b;
 }
 
@@ -81,7 +114,37 @@ code {
   text-align: center;
   padding: 20px;
   background-color: #fef2f2;
+=======
+  color: var(--color-muted);
+}
+
+.error {
+  color: var(--color-danger);
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-danger-bg);
+>>>>>>> 80d62c4 (Commit 4)
   border-radius: 8px;
   margin: 20px 0;
 }
 
+<<<<<<< HEAD
+=======
+:root {
+  --color-bg: #f6f7fb;
+  --color-text: #0f172a;
+  --color-primary: #0ea5e9;
+  --color-primary-dark: #0284c7;
+  --color-secondary: #14b8a6;
+  --color-secondary-dark: #0d9488;
+  --color-muted: #64748b;
+  --color-danger: #ef4444;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-surface-muted: #f1f5f9;
+  --color-warning: #f59e0b;
+  --color-warning-strong: #fbbf24;
+  --color-accent: #a78bfa;
+  --color-danger-bg: #fee2e2;
+}
+>>>>>>> 80d62c4 (Commit 4)

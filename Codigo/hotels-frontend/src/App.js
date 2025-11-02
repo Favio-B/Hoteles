@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+﻿import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Breadcrumb from './components/Breadcrumb';
+import NavBar from './components/NavBar';
+>>>>>>> 80d62c4 (Commit 4)
 import axios from 'axios';
 import { FaStar, FaSearch, FaMapMarkerAlt, FaWifi, FaCar, FaSwimmingPool, FaDumbbell, FaUtensils, FaGlassMartini, FaSpa, FaConciergeBell, FaSnowflake, FaTv, FaWineBottle, FaLock } from 'react-icons/fa';
 import './App.css';
@@ -8,6 +15,10 @@ import './App.css';
 const API_BASE_URL = 'http://localhost:9090/api';
 
 function App() {
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+>>>>>>> 80d62c4 (Commit 4)
   const [hotels, setHotels] = useState([]);
   const [mostSearched, setMostSearched] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -167,8 +178,13 @@ function App() {
           <button className="btn btn-secondary" onClick={() => window.location.reload()}>
             Recargar página
           </button>
+<<<<<<< HEAD
         </div>
       </div>
+=======
+                              </div>
+                       </div>
+>>>>>>> 80d62c4 (Commit 4)
     );
   }
 
@@ -180,9 +196,19 @@ function App() {
           <p>Descubre los mejores hoteles en la capital de Colombia</p>
         </div>
       </header>
+<<<<<<< HEAD
 
       <main className="main">
         <div className="container">
+=======
+      <NavBar />
+      {/* Menú de navegación global */}
+      <Breadcrumb items={[{ label: 'Inicio' }]} />
+
+      <main className="main">
+        <div className="container">
+          <div id="hotels" />
+>>>>>>> 80d62c4 (Commit 4)
           {/* Búsqueda y Filtros */}
           <section className="search-section">
             <div className="search-container">
@@ -326,7 +352,11 @@ Ver Todos los Hoteles
                     >
                       {mostSearched.map(hotel => (
                         <div key={hotel._id} className="slider-slide">
+<<<<<<< HEAD
                           <div className="hotel-card featured">
+=======
+                          <div className="hotel-card featured" onClick={() => navigate(`/hotels/${hotel._id}`)}>
+>>>>>>> 80d62c4 (Commit 4)
                             <div className="hotel-image">
                               <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
                               <div className="hotel-badge">Más Buscado</div>
@@ -406,7 +436,11 @@ Ver Todos los Hoteles
               {filteredHotels.length > 0 ? (
                 <div className="hotels-grid">
                   {filteredHotels.map(hotel => (
+<<<<<<< HEAD
                     <div key={hotel._id} className="hotel-card">
+=======
+                    <div key={hotel._id} className="hotel-card" onClick={() => navigate(`/hotels/${hotel._id}`)}>
+>>>>>>> 80d62c4 (Commit 4)
                       <div className="hotel-image">
                         <img src={hotel.images[0]?.url || 'https://via.placeholder.com/400x250'} alt={hotel.name} />
                       </div>
@@ -467,10 +501,41 @@ Ver Todos los Hoteles
             </section>
           )}
         </div>
+<<<<<<< HEAD
       </main>
 
       <footer className="footer">
         <div className="container">
+=======
+        <div className="container">
+          {/* Sección Información adicional */}
+          <section id="info" className="info-section">
+            <h2>Información adicional</h2>
+            <p>
+              Explora hoteles por barrios, rango de precio y amenidades. Nuestra plataforma
+              te muestra tendencias, reseñas verificadas y estadísticas útiles para decidir.
+            </p>
+          </section>
+
+          {/* Sección Sobre */}
+          <section id="about" className="about-section">
+            <h2>Sobre esta página</h2>
+            <p>
+              Hoteles Bogotá es una app de ejemplo con frontend React y backend Express.
+              Usamos MongoDB y Docker para facilitar desarrollo y despliegue.
+            </p>
+          </section>
+        </div>
+        
+      </main>
+
+        <footer className="footer">
+        <div className="container">
+          <div id="contact" className="contact-block">
+            <h2>Contáctanos</h2>
+            <p>¿Dudas o sugerencias? Escríbenos a <a href="mailto:soporte@hoteles-bogota.test">soporte@hoteles-bogota.test</a></p>
+          </div>
+>>>>>>> 80d62c4 (Commit 4)
           <p>&copy; 2024 Hoteles Bogotá. Todos los derechos reservados.</p>
         </div>
       </footer>
@@ -480,3 +545,9 @@ Ver Todos los Hoteles
 
 export default App;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 80d62c4 (Commit 4)

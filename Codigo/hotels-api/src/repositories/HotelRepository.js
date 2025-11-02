@@ -94,6 +94,27 @@ class HotelRepository {
         }
     }
 
+<<<<<<< HEAD
+=======
+    async addReview(id, review) {
+        try {
+            const hotel = await Hotel.findById(id);
+            if (!hotel) {
+                throw new Error('Hotel no encontrado');
+            }
+            hotel.reviews.push(review);
+            // Recalcular rating promedio si hay reseñas
+            if (hotel.reviews.length > 0) {
+                const avg = hotel.reviews.reduce((a, r) => a + r.rating, 0) / hotel.reviews.length;
+                hotel.rating = Math.round(avg * 10) / 10; // un decimal
+            }
+            return await hotel.save();
+        } catch (error) {
+            throw new Error(`Error al agregar reseña: ${error.message}`);
+        }
+    }
+
+>>>>>>> 80d62c4 (Commit 4)
     async delete(id) {
         try {
             const hotel = await Hotel.findByIdAndUpdate(

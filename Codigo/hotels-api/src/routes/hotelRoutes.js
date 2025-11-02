@@ -25,6 +25,10 @@ router.get('/stats/statistics', controller.getStatistics.bind(controller));
 
 // Rutas con ID
 router.get('/:id', validateMongoId, controller.getHotelById.bind(controller));
+<<<<<<< HEAD
+=======
+router.post('/:id/reviews', validateMongoId, controller.addReview.bind(controller));
+>>>>>>> 80d62c4 (Commit 4)
 router.put('/:id', validateMongoId, controller.updateHotel.bind(controller));
 router.delete('/:id', validateMongoId, controller.deleteHotel.bind(controller));
 
